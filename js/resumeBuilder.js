@@ -67,8 +67,7 @@ var work =
       "title":"Web Developer",
       "location":"Cairo,Egypt",
       "dates":"1st june 2014",
-      "description":"My job there was really amazing , as a web develper I had a great time making their \
-      website and enjoy my time with wonderful people"},
+      "description":"My job there was really amazing , as a web develper I had a great time making their website and enjoy my time with wonderful people"},
       {"employer":"Accenture",
       "title":"ASE",
       "location":"bangalore",
@@ -78,22 +77,25 @@ var work =
 
 work.display = function ()
 {
-  for(job in work.jobs)
+  for(var job in work.jobs)
   {
-    $("#workExperience").append(HTMLworkStart);
-    var employer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
-    var title = HTMLworkTitle.replace("%data%",work.jobs[job].title);
-    var total = employer + title;
-    $(".work-entry:last").append(total);
+    if(job.length > 0)
+    {
+      $("#workExperience").append(HTMLworkStart);
+      var employer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+      var title = HTMLworkTitle.replace("%data%",work.jobs[job].title);
+      var total = employer + title;
+      $(".work-entry:last").append(total);
 
-    var date = HTMLworkDates.replace("%data%",work.jobs[job].dates);
-    $(".work-entry:last").append(date);
+      var date = HTMLworkDates.replace("%data%",work.jobs[job].dates);
+      $(".work-entry:last").append(date);
 
-    var location = HTMLworkLocation.replace("%data%",work.jobs[job].location);
-    $(".work-entry:last").append(location);
+      var location = HTMLworkLocation.replace("%data%",work.jobs[job].location);
+      $(".work-entry:last").append(location);
 
-    var description = HTMLworkDescription.replace("%data%",work.jobs[job].description);
-    $(".work-entry:last").append(description);
+      var description = HTMLworkDescription.replace("%data%",work.jobs[job].description);
+      $(".work-entry:last").append(description);
+    }
   }
 };
 
@@ -126,36 +128,44 @@ var education = {
 
 education.display = function()
 {
-  for(school in education.schools)
+  for(var school in education.schools)
   {
-    $('#education').append(HTMLschoolStart);
-    var name = HTMLschoolName.replace('%data%',education.schools[school].name).replace('%data1%',education.schools[school].degree);
-    //$('.education-entry:last').append(name);
-    //var deg = HTMLschoolDegree.replace('%data%',education.schools[school].degree);
-    $('.education-entry:last').append(name);
-    var date = HTMLschoolDates.replace('%data%',education.schools[school].degreedate);
-    $('.education-entry:last').append(date);
-    var loc = HTMLschoolLocation.replace('%data%',education.schools[school].location);
-    $('.education-entry:last').append(loc);
-
-    for(major in education.schools[school].majors)
+    if(school.length > 0)
     {
-      var mj = HTMLschoolMajor.replace('%data%',education.schools[school].majors[major]);
-      $('.education-entry:last').append(mj);
-    }
+      $('#education').append(HTMLschoolStart);
+      var name = HTMLschoolName.replace('%data%',education.schools[school].name).replace('%data1%',education.schools[school].degree);
+      //$('.education-entry:last').append(name);
+      //var deg = HTMLschoolDegree.replace('%data%',education.schools[school].degree);
+      $('.education-entry:last').append(name);
+      var date = HTMLschoolDates.replace('%data%',education.schools[school].degreedate);
+      $('.education-entry:last').append(date);
+      var loc = HTMLschoolLocation.replace('%data%',education.schools[school].location);
+      $('.education-entry:last').append(loc);
 
+    for(var major in education.schools[school].majors)
+    {
+      if(major.length > 0)
+      {
+        var mj = HTMLschoolMajor.replace('%data%',education.schools[school].majors[major]);
+        $('.education-entry:last').append(mj);
+      }
+    }
   }
-  for(courses in education.onlineCourses)
+  }
+  for(var courses in education.onlineCourses)
   {
-    $('.education-entry:last').append(HTMLonlineClasses);
-    var title = HTMLonlineTitle.replace("%data%",education.onlineCourses[courses].title).replace('%data1%',education.onlineCourses[courses].school);
-    //$('.education-entry:last').append(title);
-    //var school = HTMLonlineSchool.replace('%data%',education.onlineCourses[courses].school);
-    $('.education-entry:last').append(title);
-    var date = HTMLonlineDates.replace('%data%',education.onlineCourses[courses].dates);
-    $('.education-entry:last').append(date);
-    var url = HTMLonlineURL.replace('%data%',education.onlineCourses[courses].url);
-    $('.education-entry:last').append(url);
+    if(courses.length > 0)
+    {
+      $('.education-entry:last').append(HTMLonlineClasses);
+      var title = HTMLonlineTitle.replace("%data%",education.onlineCourses[courses].title).replace('%data1%',education.onlineCourses[courses].school);
+      //$('.education-entry:last').append(title);
+      //var school = HTMLonlineSchool.replace('%data%',education.onlineCourses[courses].school);
+      $('.education-entry:last').append(title);
+      var edu_date = HTMLonlineDates.replace('%data%',education.onlineCourses[courses].dates);
+      $('.education-entry:last').append(edu_date);
+      var url = HTMLonlineURL.replace('%data%',education.onlineCourses[courses].url);
+      $('.education-entry:last').append(url);
+    }
   }
 };
 
@@ -167,18 +177,14 @@ var projects =
       "title":"HRS app",
       "link":"https://github.com/sankitshane/HRSapp",
       "dates":"4/05/2015",
-      "description":"It is a c++ Console application project that works alongside \
-      with Oracle sql to store data , making queres run through c++ function and \
-      store data and use data through c++.",
+      "description":"It is a c++ Console application project that works alongside with Oracle sql to store data , making queres run through c++ function and store data and use data through c++.",
       "images":["images/menu.jpg"]
     },
     {
     "title":"claim express",
     "link":"https://github.com/sankitshane/J2EE-Project",
     "dates":"2014",
-    "description":"It is a Java Servlet web Application with IBM DB2 as the backend\
-    database to store data and access through java program .It is on registering \
-    medical claims and to automise the claim process.",
+    "description":"It is a Java Servlet web Application with IBM DB2 as the backend database to store data and access through java program .It is on registering medical claims and to automise the claim process.",
     "images":["images/j2ee.png"]
     }
   ]
@@ -187,17 +193,20 @@ var projects =
 projects.display = function()
 {
 
-  for(project in projects.projects)
+  for(var project in projects.projects)
   {
-    $('#projects').append(HTMLprojectStart);
-    var title = HTMLprojectTitle.replace("%data%",projects.projects[project].title).replace('#',projects.projects[project].link);
-    $('.project-entry:last').append(title);
-    var date = HTMLprojectDates.replace('%data%',projects.projects[project].dates);
-    $('.project-entry:last').append(date);
-    var des = HTMLprojectDescription.replace('%data%',projects.projects[project].description);
-    $('.project-entry:last').append(des);
-    var img = HTMLprojectImage.replace('%data%',projects.projects[project].images);
-    $('.project-entry:last').append(img);
+    if(project.length > 0)
+    {
+      $('#projects').append(HTMLprojectStart);
+      var title = HTMLprojectTitle.replace("%data%",projects.projects[project].title).replace('#',projects.projects[project].link);
+      $('.project-entry:last').append(title);
+      var date = HTMLprojectDates.replace('%data%',projects.projects[project].dates);
+      $('.project-entry:last').append(date);
+      var des = HTMLprojectDescription.replace('%data%',projects.projects[project].description);
+      $('.project-entry:last').append(des);
+      var img = HTMLprojectImage.replace('%data%',projects.projects[project].images);
+      $('.project-entry:last').append(img);
+    }
   }
 };
 
